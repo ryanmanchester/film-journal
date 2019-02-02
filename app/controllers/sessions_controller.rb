@@ -17,8 +17,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    byebug
-    
     log_out
     flash[:message] = "See you soon!"
     redirect_to signin_path
