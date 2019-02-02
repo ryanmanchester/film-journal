@@ -1,4 +1,6 @@
 <h1>Welcome Back, <%= @user.username %>!</h1>
 <h2>Here's What You've Been Watching:</h2>
 
-  <%= link_to "Sign Out", signout_path %>
+  <%= form_tag('/signout' method: :delete) do %>
+    <%= submit_tag 'Signout' %>
+  <% end %>

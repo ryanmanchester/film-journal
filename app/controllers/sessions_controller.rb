@@ -6,19 +6,21 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:session][:username])
     #byebug
-    if @user && @user.authenticate(password: params[:session][:password])
+    if @user && @user.authenticate(params[:session][:password])
 
       log_in(@user)
       redirect_to user_path(@user)
     else
+      flash[:alert] = "Invalid username/password"
       redirect_to signin_path
-      flash.now = "Invalid username/password"
     end
   end
 
   def destroy
+    byebug
+    
     log_out
+    flash[:message] = "See you soon!"
     redirect_to signin_path
-    flash.now = "See you soon!"
   end
 end
