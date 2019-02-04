@@ -10,7 +10,8 @@ class UsersController < ApplicationController
       log_in(@user)
       redirect_to user_path(@user), message: "Welcome back, #{@user.username}!"
     else
-      redirect_to signup_path
+      render 'new'
+
     end
   end
 
