@@ -5,19 +5,22 @@ class UsersController < ApplicationController
   end
 
   def create
-    if !params[:user][:username].blank? && !params[:user][:password].blank?
-      @user = User.create(user_params)
+    @user = User.new(user_params)
+    if @user.save
       log_in(@user)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), message: "Welcome back, #{@user.username}!"
     else
-      redirect_to '/signup'
-      flash[:alert] = "Username and email must be provided"
+      redirect_to signup_path
     end
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    if logged_in?
+      @user = User.find_by(id: params[:id])
+  else
+    redirect_to root_path, message: "Please Sign In or Sign Up for an Account"
   end
+end
 
   private
   def user_params
