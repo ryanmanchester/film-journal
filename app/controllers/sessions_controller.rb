@@ -9,14 +9,17 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       log_in(@user)
       redirect_to user_path(@user)
+      flash[:success] = "Welcome back, #{@user.username}!"
     else
-      flash[:alert] = "Invalid username/password"
       redirect_to signin_path
+      flash[:alert] = "Invalid username/password"
     end
   end
 
   def destroy
     log_out
-    redirect_to signin_path, message:  "See you soon!"
+    redirect_to root_path
+    flash[:message] = "See you soon!"
+
   end
 end

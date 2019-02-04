@@ -1,12 +1,13 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for @user do |f| %>
-    <% if @user.errors.full_messages %>
+    
+      <%= form_for @user do |f| %>
+      <% if @user.errors.full_messages %>
         <% @user.errors.full_messages.uniq.each do |msg| %>
           <%= msg + "." %>
-
-     <% end %>
+       <% end %>
     <% end %>
+
       <%= f.label :username %>
       <%= f.text_field :username, class: 'form-control' %>
 
