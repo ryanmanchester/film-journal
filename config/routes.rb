@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :directors
+  resources :movies
   get 'static/welcome'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
