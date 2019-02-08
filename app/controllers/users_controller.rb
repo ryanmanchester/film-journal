@@ -16,12 +16,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    if logged_in?
-      @user = User.find_by(id: params[:id])
-  else
-    redirect_to root_path
-    flash[:message] = "Please Sign In or Sign Up for an Account"
-  end
+    @user = User.find_by(id: params[:id])
+    redirect_to root_path unless @user == current_user
+    flash[:message] = "Action not permitted"
+
 end
 
   private
