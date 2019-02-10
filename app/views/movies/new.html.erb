@@ -13,7 +13,12 @@
                   <%= f.label :starring %><br>
                   <%= f.text_field :starring %><br>
                   <%= f.label :director_name %><br>
-                  <%= f.text_field :director_name %><br>
+                  <%= f.text_field :director_name, list: "directors_autocomplete" %>
+                      <datalist id="directors_autocomplete">
+                       <% Director.all.each do |director| %>
+                        <option value="<%= director.name %>">
+                    <% end %>
+                       </datalist><br>
                   <%= f.label :synopsis %><br>
                   <%= f.text_area :synopsis %><br>
                   <%= f.label :release_year %><br>
