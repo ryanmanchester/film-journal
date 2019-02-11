@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    
     @user = User.find_by(id: params[:id])
     redirect_to root_path unless @user == current_user
     flash[:message] = "Action not permitted"

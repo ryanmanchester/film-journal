@@ -1,5 +1,13 @@
 <h1>Welcome back, <%= @user.username %>!</h1>
 <h2>Here's What You've Been Watching:</h2>
+<% @user.movies.uniq.each do |movie|%>
+ <ul>
+   <%= image_tag(movie.image) %><br>
+  <%= movie.title %> - <%= movie.director.name %>
+
+  </ul>
+<% end %>
+<%= link_to "Add a Movie", new_movie_path %>
 
   <%= form_tag('/signout', method: :delete) do %>
     <%= submit_tag 'Signout' %>
