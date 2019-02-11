@@ -1,12 +1,32 @@
-<h1>Welcome back, <%= @user.username %>!</h1>
-<h2>Here's What You've Been Watching:</h2>
-<% @user.movies.uniq.each do |movie|%>
- <ul>
-   <%= image_tag(movie.image) %><br>
-  <%= movie.title %> - <%= movie.director.name %>
+<div class="container">
 
-  </ul>
-<% end %>
+  <!-- Page Heading -->
+  <h1 class="my-4">Welcome Back, <%= @user.username %><br>
+    <small>Here's what you've been watching:</small>
+  </h1>
+<% @user.movies.uniq.each do |movie| %>
+  <div class="row">
+
+    <div class="col-lg-4 col-sm-6 mb-4">
+
+      <div class="card h-100">
+
+        <a href="#"><img class="card-img-top" src="<%= movie.image %>" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="#"><%= movie.title %></a>
+          </h4>
+          <p class="card-text">Directed by: <%= movie.director.name %></p>
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <% end %>
+    </div>
+
+
 <%= link_to "Add a Movie", new_movie_path %>
 
   <%= form_tag('/signout', method: :delete) do %>
