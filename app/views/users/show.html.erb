@@ -4,9 +4,9 @@
   <h1 class="my-4">Welcome Back, <%= @user.username %><br>
     <small>Here's what you've been watching:</small>
   </h1>
-<% @user.movies.uniq.each do |movie| %>
-  <div class="row">
 
+  <div class="row">
+<% @user.movies.uniq.each do |movie| %>
     <div class="col-lg-4 col-sm-6 mb-4">
 
       <div class="card h-100">
@@ -21,14 +21,12 @@
         </div>
       </div>
     </div>
-
-    </div>
     <% end %>
     </div>
 
+    <%= link_to "Add a Movie", new_movie_path %><br>
+        <%= form_tag('/signout', method: :delete) do %>
+        <%= submit_tag 'Signout' %>
+      <% end %>
 
-<%= link_to "Add a Movie", new_movie_path %>
-
-  <%= form_tag('/signout', method: :delete) do %>
-    <%= submit_tag 'Signout' %>
-  <% end %>
+    </div>
