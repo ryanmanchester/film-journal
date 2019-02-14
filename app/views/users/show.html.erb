@@ -19,14 +19,17 @@
           <p class="card-text">Directed by: <%= movie.director.name %></p>
 
         </div>
+
       </div>
+
     </div>
-    <% end %>
+<% end %>
     </div>
 
     <%= link_to "Add a Movie", new_movie_path %><br>
         <%= form_tag('/signout', method: :delete) do %>
-        <%= submit_tag 'Signout' %>
-      <% end %>
+          <%= submit_tag 'Signout' %>
+        <% end %>
+
 
     </div>
