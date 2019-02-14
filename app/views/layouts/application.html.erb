@@ -16,8 +16,11 @@
     <!-- Navigation -->
      <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
        <div class="container">
-
-         <a class="navbar-brand" href="/users/signin">Welcome To Film Journal</a>
+         <% if logged_in? %>
+         <a class="navbar-brand" href="<%= user_path(current_user) %>">Welcome <%= current_user.username %></a>
+         <% else %>
+          <a class="navbar-brand" href="/">Welcome To Film Journal</a>
+         <% end %>
 
          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
            Menu
@@ -41,7 +44,7 @@
      </nav>
 
      <!-- Page Header -->
-     <header class="masthead" style="background-image: url('collage.jpg')">
+     <header class="masthead" style="background-image: url(https://cache.desktopnexus.com/cropped-wallpapers/1998/1998762-1366x768-[DesktopNexus.com].jpg?st=Apj5OwINhvvrwCxNVb93dg&e=1550003412)">
        <div class="overlay"></div>
        <div class="container">
          <div class="row">
