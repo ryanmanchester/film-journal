@@ -8,10 +8,10 @@
 
               <div class="form-label-group">
                 <%= form_for @user do |f| %>
-                <% if @user.errors.full_messages %>
+                <div class="error-messages"><% if @user.errors.full_messages %>
                   <% @user.errors.full_messages.uniq.each do |msg| %>
-                    <%= msg + "." %>
-                 <% end %>
+                    <%= msg + "." %><br>
+                 <% end %></div>
               <% end %>
 
                 <%= f.label :username %>
