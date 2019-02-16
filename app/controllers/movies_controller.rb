@@ -7,10 +7,14 @@ class MoviesController < ApplicationController
 
   def create
     user = User.find_by(id: session[:user_id])
-    @movie = Movie.find_or_create_by(title: movie_params[:title])
-    byebug
-    user.movies << @movie
-    redirect_to user_path(user)
+    @movie = Movie.new(movie_params)
+    if @movie.save
+      user.movies << @movie
+      redirect_to user_path(user)
+    else
+      render :new
+    
+    end
   end
 
   private
