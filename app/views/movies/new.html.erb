@@ -7,12 +7,17 @@
             <h5 class="card-title text-center">New Movie</h5>
 
               <div class="form-label-group">
+                <% @movie.errors.full_messages.each do |msg| %>
+                  <ul class="error-messages">
+                    <%= msg %>
+                    </ul>
+                <% end %>
                 <%= form_for @movie do |f| %>
                   <%= f.label :title %><br>
                   <%= f.text_field :title %><br>
                   <%= f.label :starring %><br>
                   <%= f.text_field :starring %><br>
-                  <%= f.label :director_name %><br>
+                  <%= f.label :director_name, "Director" %><br>
                   <%= f.text_field :director_name, list: "directors_autocomplete" %>
                       <datalist id="directors_autocomplete">
                        <% Director.all.each do |director| %>
