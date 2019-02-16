@@ -7,13 +7,14 @@ class MoviesController < ApplicationController
 
   def create
     user = User.find_by(id: session[:user_id])
+    #byebug
     @movie = Movie.new(movie_params)
     if @movie.save
       user.movies << @movie
       redirect_to user_path(user)
     else
       render :new
-    
+
     end
   end
 
