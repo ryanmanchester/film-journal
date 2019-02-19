@@ -17,6 +17,14 @@
             <a href="<%= movie_path(movie) %>"><%= movie.title %></a>
           </h4>
           <p class="card-text">Directed by: <%= movie.director.name %></p>
+          <% if !movie.user_movies.blank? %>
+
+             <% movie.user_movies.each do |user_movie| %>
+             <p class="card-text"><a href="<%= edit_movie_path(movie) %>">Your Rating: <%= user_movie.rating %></p>
+             <p class="card-text">Your Review: <%= user_movie.review %></p>
+             <% end %>
+
+          <% end %>
 
         </div>
 
