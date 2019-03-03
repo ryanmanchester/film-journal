@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
   def create
     #byebug
     @movie = Movie.new(movie_params)
-    byebug
+    #byebug
     if @movie.save
       add_movie(@movie)
       redirect_to user_path(@user)
@@ -42,7 +42,7 @@ byebug
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :release_year, :director_name, :starring, :synopsis, :image, user_movies_attributes: [:review, :rating])
+    params.require(:movie).permit(:title, :release_year, :director_name, :starring, :synopsis, :image, user_movies_attributes: [:review, :rating, :user_id])
   end
 
 

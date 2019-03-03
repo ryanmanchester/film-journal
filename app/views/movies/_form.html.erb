@@ -26,7 +26,7 @@
                       <datalist id="directors_autocomplete">
                        <% @directors.each do |director| %>
                         <option value="<%= director.name %>">
-                    <% end %>
+                       <% end %>
                        </datalist><br>
                   <%= f.label :synopsis %><br>
                   <%= f.text_area :synopsis %><br>
@@ -35,6 +35,7 @@
                   <%= f.label :image, "Image URL" %><br>
                   <%= f.text_field :image %><br>
                   <%= f.fields_for :user_movies do |user_movie| %>
+                    <%= user_movie.hidden_field(:user_id, {:value => @user.id}) %>
                     <%= user_movie.label :review, "Your Review" %><br>
                     <%= user_movie.text_area :review %><br>
                     <%= user_movie.label :rating, "Your Rating (1-5)" %><br>
