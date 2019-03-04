@@ -11,9 +11,9 @@ class MoviesController < ApplicationController
 
   def create
     #byebug
-    @user.movies.build(movie_params)
+    @movie = Movie.new(movie_params)
     #byebug
-     if @user.movies.last.save
+     if @movie.save
     #   add_movie(@movie)
       redirect_to user_path(@user)
      else
@@ -30,6 +30,7 @@ class MoviesController < ApplicationController
   end
 
   def update
+
     @movie.update(movie_params)
 
     redirect_to user_path(@user)
