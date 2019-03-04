@@ -12,4 +12,12 @@ class Movie < ApplicationRecord
   def director_name
     self.director ? self.director.name : nil
   end
+
+  # def user_movies_attributes=(movie_attributes)
+  #   byebug
+  #   movie_attributes.values.each do |movie_attribute|
+  #     user_movie = UserMovie.find_or_create_by(movie_attribute)
+  #     self.user_movies << user_movie
+  #   end
+  # end
 end

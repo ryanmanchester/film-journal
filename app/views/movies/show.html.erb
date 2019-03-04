@@ -20,9 +20,11 @@
       <h3 class="my-3">Starring:</h3>
       <p><%= @movie.starring %></p>
       <h3 class="my-3">Your Reiew:</h3>
-      <p></p>
+       <% @movie.user_movies.each do |movie| %>
+      <p><%= movie.review %></p>
       <h3 class="my-3">Your Rating:</h3>
-      <p></p>
+      <p><%= movie.rating %></p>
+      <% end %>
 
 
     </div>
