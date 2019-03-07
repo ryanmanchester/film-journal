@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
   def create
     #byebug
     @movie = Movie.new(movie_params)
-    #byebug
+  #  byebug
      if @movie.save
     #   add_movie(@movie)
       redirect_to user_path(@user)
@@ -26,12 +26,12 @@ class MoviesController < ApplicationController
   end
 
   def edit
-byebug
+
   end
 
   def update
-
-    @movie.update(movie_params)
+   update_user_movie
+    @movie.save
 
     redirect_to user_path(@user)
   end
