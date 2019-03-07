@@ -20,31 +20,27 @@
       <h3 class="my-3">Starring:</h3>
       <p><%= @movie.starring %></p>
       <h3 class="my-3">Your Reiew:</h3>
-       <% @movie.user_movies.each do |movie| %>
-      <p><%= movie.review %></p>
+      <p><%= @movie.user_movies.last.review %></p>
       <h3 class="my-3">Your Rating:</h3>
-      <p><%= movie.rating %></p>
-      <% end %>
-
-
+      <p><%= @movie.user_movies.last.rating %></p>
     </div>
-
+     <p><a href="<%= user_path(@user) %>">Back</p>
   </div>
   <!-- /.row -->
 
-  <!-- Related Projects Row -->
+  <!-- Related Projects Row
   <h3 class="my-4">Other Movies You've Seen:</h3>
 
   <div class="row">
-<% @user.movies.each do |movie| %>
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="<%= movie_path(movie) %>">
-            <img class="img-fluid" src="<%= movie.image %>" alt="">
+<%# <% @user.movies.each do |movie| %> %>
+    <div class="col-md-3 col-sm-6 mb-4"> %>
+      <%# <a href="<%= movie_path(movie) %>"> %>
+            <%# <img class="img-fluid" src="<%= movie.image %>" alt=""> %>
           </a>
     </div>
 
-<% end %>
-  </div>
+<%# <% end %> %>
+  </div> -->
   <!-- /.row -->
 
-</div>
+<!-- </div> -->
