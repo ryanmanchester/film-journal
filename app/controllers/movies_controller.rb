@@ -30,10 +30,9 @@ class MoviesController < ApplicationController
   end
 
   def update
-   update_user_movie
-    @movie.save
-
-    redirect_to user_path(@user)
+   byebug
+   @movie.update(movie_params)
+   redirect_to user_path(@user)
   end
 
   private
