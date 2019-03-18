@@ -3,6 +3,7 @@ class Movie < ApplicationRecord
   has_many :user_movies
   has_many :users, through: :user_movies
   #validates :title, :starring, :director_name, :synopsis, :release_year, :image, presence: true
+  validates :title, uniqueness: true
  accepts_nested_attributes_for :user_movies
 
   def director_name=(name)
@@ -13,12 +14,12 @@ class Movie < ApplicationRecord
     self.director ? self.director.name : nil
   end
 
-#   def user_movies_attributes=(movie_attributes)
-#     #byebug
-#     movie_attributes.values.each do |movie_attribute|
-# byebug
-#       user_movie = UserMovie.find_or_create_by(user_id: movie_attribute[:user_id], movie_id: self.id)
-#       self.user_movies << user_movie
-#     end
-#   end
+  def user_movies_attributes=(movie_attributes)
+    #byebug
+    movie_attributes.values.each do |movie_attribute|
+#byebug
+      user_movie = UserMovie.find_or_create_by(user_id: movie_attribute[:user_id], movie_id: self.id)
+      user_movie.update(movie_attribute)
+    end
+  end
 end
