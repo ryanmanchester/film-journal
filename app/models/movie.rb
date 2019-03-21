@@ -15,9 +15,7 @@ class Movie < ApplicationRecord
   end
 
   def user_movies_attributes=(movie_attributes)
-    #byebug
     movie_attributes.values.each do |movie_attribute|
-#byebug
       user_movie = UserMovie.find_or_create_by(user_id: movie_attribute[:user_id], movie_id: self.id)
       user_movie.update(movie_attribute)
     end

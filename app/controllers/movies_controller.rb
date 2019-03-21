@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :require_login
   before_action :all_directors, only: [:new, :edit]
   before_action :find_user
-  before_action :find_movie, only: [:show, :edit, :update]
+  before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def new
     @movie = Movie.new
@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    #byebug
+    byebug
     @movie = Movie.new(movie_params)
   #  byebug
      if @movie.save
@@ -21,6 +21,7 @@ class MoviesController < ApplicationController
      end
   end
 
+
   def show
 
   end
@@ -30,9 +31,13 @@ class MoviesController < ApplicationController
   end
 
   def update
-   byebug
    @movie.update(movie_params)
    redirect_to user_path(@user)
+  end
+
+  def destroy
+    @movie.destroy
+    redirect_to user_path(@user)
   end
 
   private
