@@ -19,6 +19,7 @@
                     </ul>
                 <% end %>
                 <%= form_for @movie do |f| %>
+                  <%= f.collection_check_boxes(:id, Movie.all, :id, :title) %><br>
                   <%= f.label :title %><br>
                   <%= f.text_field :title %><br>
                   <%= f.label :starring %><br>

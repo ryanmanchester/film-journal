@@ -10,14 +10,15 @@ class MoviesController < ApplicationController
   end
 
   def create
-    byebug
-    @movie = Movie.new(movie_params)
-  #  byebug
-     if @movie.save
-    #   add_movie(@movie)
+    if params[:movie][:id][1]
+      movie = Movie.find(params[:movie][:id][1])
+      @user.movies << movie
       redirect_to user_path(@user)
-     else
-       render :new
+    else
+      movie = Movie.create(movie_params)
+      @user.movies << movie
+
+      redirect_to user_path(@user)
      end
   end
 
@@ -31,6 +32,7 @@ class MoviesController < ApplicationController
   end
 
   def update
+    
    @movie.update(movie_params)
    redirect_to user_path(@user)
   end

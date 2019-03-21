@@ -24,7 +24,7 @@
       <h3 class="my-3">Director:</h3>
       <p><%= @movie.director.name %></p>
       <% @movie.user_movies.each do |user_movie| %>
-      <h3 class="my-3">Your Reiew:</h3>
+      <h3 class="my-3">Your Review:</h3>
       <p><%= user_movie.review %></p>
       <h3 class="my-3">Your Rating:</h3>
       <p><%= user_movie.rating %></p>
@@ -32,7 +32,7 @@
     <% end %>
      <%= link_to "Edit Movie", edit_movie_path(@movie) %>
     </div>
-    
+
      <%= link_to "Delete Movie", movie_path(@movie), method: :delete %>
   <!-- /.row -->
 
