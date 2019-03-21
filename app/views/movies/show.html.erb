@@ -15,17 +15,25 @@
     </div>
 
     <div class="col-md-4">
-      <h3 class="my-3">What is it About?</h3>
+      <h3 class="my-3">Synopsis:</h3>
       <p><%= @movie.synopsis %></p>
       <h3 class="my-3">Starring:</h3>
       <p><%= @movie.starring %></p>
+      <h3 class="my-3">Release Year:</h3>
+      <p><%= @movie.release_year %></p>
+      <h3 class="my-3">Director:</h3>
+      <p><%= @movie.director.name %></p>
+      <% @movie.user_movies.each do |user_movie| %>
       <h3 class="my-3">Your Reiew:</h3>
-      <p><%= @movie.user_movies.last.review %></p>
+      <p><%= user_movie.review %></p>
       <h3 class="my-3">Your Rating:</h3>
-      <p><%= @movie.user_movies.last.rating %></p>
+      <p><%= user_movie.rating %></p>
     </div>
-     <p><a href="<%= user_path(@user) %>">Back</p>
-  </div>
+    <% end %>
+     <%= link_to "Edit Movie", edit_movie_path(@movie) %>
+    </div>
+    
+     <%= link_to "Delete Movie", movie_path(@movie), method: :delete %>
   <!-- /.row -->
 
   <!-- Related Projects Row
