@@ -10,16 +10,19 @@ class MoviesController < ApplicationController
   end
 
   def create
-    if params[:movie][:id][1]
-      movie = Movie.find(params[:movie][:id][1])
+    byebug
+    if movie = Movie.find(params[:movie][:id])
       @user.movies << movie
-      redirect_to user_path(@user)
+      redirect_to user_movies_path
     else
-      movie = Movie.create(movie_params)
-      @user.movies << movie
+      @user.movies.create(movie_params)
 
-      redirect_to user_path(@user)
+      redirect_to user_movies_path
      end
+  end
+
+  def index
+    @user.movies
   end
 
 
@@ -32,14 +35,14 @@ class MoviesController < ApplicationController
   end
 
   def update
-    
+
    @movie.update(movie_params)
-   redirect_to user_path(@user)
+   redirect_to user_movies_path
   end
 
   def destroy
     @movie.destroy
-    redirect_to user_path(@user)
+    redirect_to user_movies_path
   end
 
   private
