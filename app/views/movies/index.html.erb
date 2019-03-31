@@ -14,7 +14,7 @@
         <a href="#"><img class="card-img-top" src="<%= movie.image %>" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
-            <%= movie.title %>
+            <a href="<%= edit_user_movie_path(movie) %>"> <%= movie.title  %></a>
           </h4>
           <p class="card-text">Directed by: <%= movie.director.name %></p>
 
