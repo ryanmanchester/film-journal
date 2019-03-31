@@ -38,7 +38,8 @@ class MoviesController < ApplicationController
   def update
 
    @movie.update(movie_params)
-   redirect_to user_movies_path
+  # byebug
+   redirect_to user_movies_path(current_user)
   end
 
   def destroy
@@ -54,6 +55,7 @@ class MoviesController < ApplicationController
 
   def require_login
     #byebug
+    @user = User.find_by(id: session[:user_id] )
     unless logged_in? && @user == current_user
     flash[:message] = "Please Sign In"
     redirect_to signin_path

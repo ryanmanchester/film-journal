@@ -6,7 +6,7 @@
   </h1>
 
   <div class="row">
-<% @user.movies.uniq.each do |movie| %>
+<% @user.movies.each do |movie| %>
     <div class="col-lg-4 col-sm-6 mb-4">
 
       <div class="card h-100">
@@ -14,7 +14,7 @@
         <a href="#"><img class="card-img-top" src="<%= movie.image %>" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="<%= edit_user_movie_path(movie) %>"> <%= movie.title  %></a>
+            <a href="<%= edit_user_movie_path(@user, movie) %>"> <%= movie.title  %></a>
           </h4>
           <p class="card-text">Directed by: <%= movie.director.name %></p>
 
