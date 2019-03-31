@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    byebug
+    #byebug
     if movie = Movie.find(params[:movie][:id])
       @user.movies << movie
       redirect_to user_movies_path

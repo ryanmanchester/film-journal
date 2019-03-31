@@ -18,7 +18,7 @@
                     <%= msg %>
                     </ul>
                 <% end %>
-                <%= form_for @movie do |f| %>
+                <%= form_for ([:user, @movie]) do |f| %>
                   <%= f.collection_radio_buttons(:id, Movie.all, :id, :title, ) %><br>
                   <h5 class="card-title text-center">Or Create a New Movie</h5>
                   <%= f.label :title %><br>
