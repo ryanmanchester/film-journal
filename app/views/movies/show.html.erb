@@ -30,14 +30,14 @@
       <p><%= user_movie.rating %></p>
     </div>
     <% end %>
-     <%= link_to "Edit Movie", edit_movie_path(@movie) %>
-    </div>
 
-     <%= link_to "Delete Movie", movie_path(@movie), method: :delete %>
+    </div>
+    <%= link_to "Edit Movie", edit_user_movie_path(@movie) %>
+   <%= link_to "Delete Movie", user_movie_path(@movie), method: :delete %>
   <!-- /.row -->
 
   <!-- Related Projects Row
-  <h3 class="my-4">Other Movies You've Seen:</h3>
+  <%# <h3 class="my-4">Other Movies You've Seen:</h3>
 
   <div class="row">
 <%# <% @user.movies.each do |movie| %> %>
