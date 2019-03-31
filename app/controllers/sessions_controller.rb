@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
     #byebug
     if @user && @user.authenticate(params[:session][:password])
       log_in(@user)
-      redirect_to user_path(@user)
+      redirect_to user_movies_path(@user)
+      
       flash[:success] = "Welcome back, #{@user.username}!"
     else
       redirect_to signin_path
