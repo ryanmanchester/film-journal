@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :require_login, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
   before_action :all_directors, only: [:new, :edit]
   before_action :find_user
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    #byebug
+    byebug
     if movie = Movie.find(params[:movie][:id])
       @user.movies << movie
       redirect_to user_movies_path
@@ -55,8 +55,7 @@ class MoviesController < ApplicationController
 
   def require_login
     #byebug
-    @user = User.find_by(id: session[:user_id] )
-    unless logged_in? && @user == current_user
+    unless logged_in?
     flash[:message] = "Please Sign In"
     redirect_to signin_path
   end
@@ -64,6 +63,11 @@ end
 
   def find_user
     @user = User.find_by(id: params[:user_id])
+    unless current_user == @user
+      log_out
+      redirect_to signin_path
+      flash[:message] = "Action Not Permitted"
+    end
   end
 
   def find_movie
