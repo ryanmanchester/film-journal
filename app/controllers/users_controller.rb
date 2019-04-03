@@ -15,14 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-
-    @user = User.find_by(id: params[:user_id])
-    redirect_to root_path unless @user == current_user
-    flash[:message] = "Action not permitted"
-
-end
-
   private
   def user_params
     params.require(:user).permit(:username, :password)

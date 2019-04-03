@@ -8,8 +8,7 @@
 
               <div class="form-label-group">
                 <%= form_for(:session, url: signin_path) do |f| %>
-                  <div class="flash"><h5><%= flash[:message] %></h5></div>
-                  <div class="error-messages"><%= flash[:alert] %></div><br>
+                <div class="error-messages"><%= flash[:alert] %></div><br>
                   <%= f.label :username %>
                   <%= f.text_field :username, class: 'form-control' %>
 
