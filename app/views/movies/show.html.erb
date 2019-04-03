@@ -32,8 +32,8 @@
     <% end %>
 
     </div>
-    <%= link_to "Edit Movie", edit_user_movie_path(@movie) %>
-   <%= link_to "Delete Movie", user_movie_path(@movie), method: :delete %>
+    <%= link_to "Edit Movie", edit_user_movie_path(@user, @movie) %>
+   <%= link_to "Delete Movie", user_movie_path(@user, @movie), method: :delete %>
   <!-- /.row -->
 
   <!-- Related Projects Row
