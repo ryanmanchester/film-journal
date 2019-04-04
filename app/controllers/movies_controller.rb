@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
 
   def create
     #byebug
-    if movie = Movie.find(params[:movie][:id])
+    if movie = Movie.find_by(title: movie_params[:title])
       @user.movies << movie
       redirect_to user_movies_path
     else
@@ -35,14 +35,15 @@ class MoviesController < ApplicationController
   end
 
   def update
+    byebug
     @movie.update(movie_params)
-    redirect_to user_movies_path(@user)
+    redirect_to user_movies_path
   end
 
   def destroy
-    
+
     @movie.destroy
-    redirect_to user_movies_path(@user)
+    redirect_to user_movies_path
     flash[:message] = "Movie Successfully Deleted"
   end
 
