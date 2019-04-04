@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  belongs_to :director
+  belongs_to :director, optional: true
   has_many :user_movies
   has_many :users, through: :user_movies
   #validates :title, :starring, :director_name, :synopsis, :release_year, :image, presence: true

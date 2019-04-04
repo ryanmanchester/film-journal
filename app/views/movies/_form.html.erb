@@ -8,7 +8,7 @@
               <% if @movie.title %>
                 <h5 class="card-title text-center">Edit <%= @movie.title %></h5>
               <% else %>
-                <h5 class="card-title text-center">Select a Movie</h5>
+                <h5 class="card-title text-center">Add a New Movie</h5>
               <% end %>
 
 
@@ -19,8 +19,6 @@
                     </ul>
                 <% end %>
                 <%= form_for ([:user, @movie]) do |f| %>
-                  <%= f.collection_radio_buttons(:id, Movie.all, :id, :title, ) %><br>
-                  <h5 class="card-title text-center">Or Create a New Movie</h5>
                   <%= f.label :title %><br>
                   <%= f.text_field :title %><br>
                   <%= f.label :starring %><br>
