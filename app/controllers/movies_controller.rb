@@ -35,8 +35,9 @@ class MoviesController < ApplicationController
   end
 
   def update
-    byebug
-    @movie.update(movie_params)
+raise params.inspect
+
+    @user.movies.update(movie_params)
     redirect_to user_movies_path
   end
 
@@ -62,11 +63,11 @@ end
 
   def find_user
     @user = User.find_by(id: params[:user_id])
-    unless current_user == @user
-      log_out
-      redirect_to signin_path
-      flash[:alert] = "Action Not Permitted"
-    end
+    # unless current_user == @user
+    #   log_out
+    #   redirect_to signin_path
+    #   flash[:alert] = "Action Not Permitted"
+    # end
   end
 
   def find_movie
