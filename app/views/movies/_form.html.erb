@@ -18,7 +18,8 @@
                     <%= msg %>
                     </ul>
                 <% end %>
-                <%= form_for ([:user, @movie]) do |f| %>
+                <%= form_for ([@user, @movie]) do |f| %>
+
                   <%= f.label :title %><br>
                   <%= f.text_field :title %><br>
                   <%= f.label :starring %><br>
