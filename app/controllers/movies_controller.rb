@@ -35,14 +35,12 @@ class MoviesController < ApplicationController
   end
 
   def update
-raise params.inspect
-
-    @user.movies.update(movie_params)
+    byebug
+    @movie.update(movie_params)
     redirect_to user_movies_path
   end
 
   def destroy
-
     @movie.destroy
     redirect_to user_movies_path
     flash[:message] = "Movie Successfully Deleted"
@@ -62,12 +60,12 @@ raise params.inspect
 end
 
   def find_user
-    @user = User.find_by(id: params[:user_id])
-    # unless current_user == @user
-    #   log_out
-    #   redirect_to signin_path
-    #   flash[:alert] = "Action Not Permitted"
-    # end
+    @user = User.find_by(id: session[:user_id])
+    unless current_user == @user
+      log_out
+      redirect_to signin_path
+      flash[:alert] = "Action Not Permitted"
+    end
   end
 
   def find_movie
