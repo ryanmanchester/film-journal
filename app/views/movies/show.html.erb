@@ -27,28 +27,12 @@
       <h3 class="my-3">Your Review:</h3>
       <p><%= user_movie.review %></p>
       <h3 class="my-3">Your Rating:</h3>
-      <p><%= user_movie.rating %></p>
+      <p><%= user_movie.rating %></p><br></br>
+      <h5 class="my-3"><%= link_to "Edit Movie", edit_user_movie_path(@user, @movie) %></h5>
+      <h5 class="my-3"><%= link_to "Delete Movie", user_movie_path(@user, @movie), method: :delete %></h5>
     </div>
     <% end %>
 
     </div>
-    <%= link_to "Edit Movie", edit_user_movie_path(@user, @movie) %>
-   <%= link_to "Delete Movie", user_movie_path(@user, @movie), method: :delete %>
+
   <!-- /.row -->
-
-  <!-- Related Projects Row
-  <%# <h3 class="my-4">Other Movies You've Seen:</h3>
-
-  <div class="row">
-<%# <% @user.movies.each do |movie| %> %>
-    <div class="col-md-3 col-sm-6 mb-4"> %>
-      <%# <a href="<%= movie_path(movie) %>"> %>
-            <%# <img class="img-fluid" src="<%= movie.image %>" alt=""> %>
-          </a>
-    </div>
-
-<%# <% end %> %>
-  </div> -->
-  <!-- /.row -->
-
-<!-- </div> -->
