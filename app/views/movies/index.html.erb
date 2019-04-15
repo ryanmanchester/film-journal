@@ -12,7 +12,7 @@
 
       <div class="card h-100">
 
-        <a href="#"><img class="card-img-top" src="<%= movie.image %>" alt=""></a>
+        <img class="card-img-top" src="<%= movie.image %>">
         <div class="card-body">
           <h4 class="card-title">
             <a href="<%= user_movie_path(@user, movie) %>"> <%= movie.title  %></a>
@@ -36,7 +36,7 @@
 
     <%= link_to "Add a Movie", new_user_movie_path %><br>
         <%= form_tag('/signout', method: :delete) do %>
-          <%= submit_tag 'Signout' %>
+          <%= submit_tag 'Signout', class: "btn btn-primary" %>
         <% end %>
 
 

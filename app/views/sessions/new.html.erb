@@ -1,4 +1,5 @@
 <body>
+  <div class="flash"><h5><%= flash[:message] %></h5></div>
   <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -7,6 +8,7 @@
             <h5 class="card-title text-center">Sign In</h5>
 
               <div class="form-label-group">
+               <a href="/auth/facebook" class="btn-facebook btn-block text-uppercase">Sign in with Facebook</a>
                 <%= form_for(:session, url: signin_path) do |f| %>
                 <div class="error-messages"><%= flash[:alert] %></div><br>
                   <%= f.label :username %>
@@ -14,10 +16,11 @@
 
                   <%= f.label :password %>
                   <%= f.password_field :password, class: 'form-control' %><br>
-                  <%= link_to('Log in with Facebook!', '/auth/facebook') %></br>
-                <div class="form-signin">
+
                   <%= f.submit "Sign In", class: "btn btn-primary" %>
-                  </div>
+
+
+
                 <% end %>
 
 

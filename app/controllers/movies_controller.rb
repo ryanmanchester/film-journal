@@ -35,7 +35,6 @@ class MoviesController < ApplicationController
   end
 
   def update
-    byebug
     @movie.update(movie_params)
     redirect_to user_movies_path
   end
