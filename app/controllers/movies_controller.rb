@@ -37,6 +37,7 @@ class MoviesController < ApplicationController
   def update
     @movie.update(movie_params)
     redirect_to user_movies_path
+    flash[:message] = "Movie Successfully Updated"
   end
 
   def destroy
@@ -44,6 +45,7 @@ class MoviesController < ApplicationController
     redirect_to user_movies_path
     flash[:message] = "Movie Successfully Deleted"
   end
+  
 
   private
   def movie_params
