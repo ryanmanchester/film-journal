@@ -5,9 +5,15 @@
   <h1 class="my-4">Welcome Back, <%= @user.username %><br>
     <small>Here's what you've been watching:</small>
   </h1>
-
+    <%= form_tag user_movies_path, method: :get do %>
+    <%= select_tag "directors_id", options_from_collection_for_select(Director.all, :id, :name) %>
+    <%= submit_tag "Filter", class: "btn btn-primary" %>
+    <%= link_to "Clear Filters", user_movies_path %>
+    <% end %>
   <div class="row">
-<% @user.movies.each do |movie| %>
+
+<% @movies.each do |movie| %>
+
     <div class="col-lg-4 col-sm-6 mb-4">
 
       <div class="card h-100">

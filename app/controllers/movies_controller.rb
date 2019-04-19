@@ -22,7 +22,12 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @user.movies
+    #byebug
+    if params[:directors_id].present?
+      @movies = @user.movies.director(params[:directors_id])
+    else
+      @movies = @user.movies
+    end
   end
 
 
@@ -45,7 +50,7 @@ class MoviesController < ApplicationController
     redirect_to user_movies_path
     flash[:message] = "Movie Successfully Deleted"
   end
-  
+
 
   private
   def movie_params
