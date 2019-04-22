@@ -10,9 +10,9 @@ class MoviesController < ApplicationController
   end
 
   def create
-    #byebug
     if movie = Movie.find_by(title: movie_params[:title])
       @user.movies << movie
+      @user.movies.update(movie_params)
       redirect_to user_movies_path
     else
       @user.movies.create(movie_params)
@@ -46,6 +46,7 @@ class MoviesController < ApplicationController
   end
 
   def destroy
+    @movie.user_movies.delete_all
     @movie.destroy
     redirect_to user_movies_path
     flash[:message] = "Movie Successfully Deleted"
@@ -60,13 +61,13 @@ class MoviesController < ApplicationController
 
   def require_login
     unless logged_in?
-    flash[:alert] = "Please Sign In"
-    redirect_to signin_path
+      redirect_to signin_path
+      flash[:alert] = "Please Sign In"
+    end
   end
-end
 
   def find_user
-    @user = User.find_by(id: session[:user_id])
+    @user = User.find_by(id: params[:user_id])
     unless current_user == @user
       log_out
       redirect_to signin_path

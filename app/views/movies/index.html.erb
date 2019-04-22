@@ -23,12 +23,12 @@
           <h4 class="card-title">
             <a href="<%= user_movie_path(@user, movie) %>"> <%= movie.title  %></a>
           </h4>
-          <p class="card-text">Directed by: <%= movie.director.name %></p>
+          <p class="card-text"><strong>Directed by:</strong> <%= movie.director.name %></p>
 
 
 
-             <p class="card-text">Your Rating: <%= movie.user_movies.last.rating %></p>
-             <p class="card-text">Your Review: <%= movie.user_movies.last.review %></p>
+             <p class="card-text"><strong>Your Rating:</strong> <%= movie.user_movies.last.rating %></p>
+             <p class="card-text"><strong>Your Review:</strong> <%= movie.user_movies.last.review %></p>
 
 
 
