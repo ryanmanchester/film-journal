@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :require_login
-  before_action :all_directors, only: [:new, :edit]
+  before_action :all_directors, only: [:new, :edit, :index]
   before_action :find_user
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
@@ -11,20 +11,17 @@ class MoviesController < ApplicationController
 
   def create
     if movie = Movie.find_by(title: movie_params[:title])
-      @user.movies << movie
-      @user.movies.update(movie_params)
+      add_movie(movie)
       redirect_to user_movies_path
     else
       @user.movies.create(movie_params)
-
       redirect_to user_movies_path
      end
   end
 
   def index
-    #byebug
-    if params[:directors_id].present?
-      @movies = @user.movies.director(params[:directors_id])
+    if params[:director_id]
+      @movies = @user.movies.directors(params[:director_id])
     else
       @movies = @user.movies
     end
@@ -46,8 +43,7 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie.user_movies.delete_all
-    @movie.destroy
+    delete_movie(@movie)
     redirect_to user_movies_path
     flash[:message] = "Movie Successfully Deleted"
   end
