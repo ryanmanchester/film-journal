@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   before_action :require_login
-  before_action :all_directors, only: [:new, :edit, :index]
   before_action :find_user
+  before_action :all_directors, only: [:new, :edit, :index]
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -10,11 +10,13 @@ class MoviesController < ApplicationController
   end
 
   def create
+    #byebug
     if movie = Movie.find_by(title: movie_params[:title])
       add_movie(movie)
       redirect_to user_movies_path
     else
       @user.movies.create(movie_params)
+      byebug
       redirect_to user_movies_path
      end
   end
