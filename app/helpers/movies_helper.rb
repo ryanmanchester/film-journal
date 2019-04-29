@@ -1,8 +1,8 @@
 module MoviesHelper
 
   def add_movie(movie)
+    movie.update(movie_params)
     @user.movies << movie
-    @user.movies.update(movie_params)
   end
 
 
