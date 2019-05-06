@@ -7,7 +7,7 @@
   </h1>
   <p><strong>Search by Director:</strong></p>
   <%= form_tag user_movies_path, method: :get do %>
-    <%= select_tag "director_id", options_from_collection_for_select(@directors, :id, :name) %>
+    <%= select_tag "director_id", options_from_collection_for_select(@directors, :id, :name), include_blank: true %>
     <%= submit_tag "Filter", class: "btn btn-primary" %>
     <%= link_to "Clear Filter", user_movies_path %>
   <% end %>
@@ -27,10 +27,10 @@
           <p class="card-text"><strong>Directed by:</strong> <%= movie.director.name %></p>
 
 
-
-             <p class="card-text"><strong>Your Rating:</strong> <%= movie.user_movies.last.rating %></p>
-             <p class="card-text"><strong>Your Review:</strong> <%= movie.user_movies.last.review %></p>
-
+            <% movie.user_movies.each do |user_movie| %>
+             <p class="card-text"><strong>Your Rating:</strong> <%= user_movie.rating %></p>
+             <p class="card-text"><strong>Your Review:</strong> <%= user_movie.review %></p>
+            <% end %>
 
 
         </div>
@@ -42,9 +42,11 @@
     </div>
 
     <%= link_to "Add a Movie", new_user_movie_path %><br>
-        <%= form_tag('/signout', method: :delete) do %>
+      <div class='signout'>
+         <%= form_tag('/signout', method: :delete) do %>
           <%= submit_tag 'Signout', class: "btn btn-primary" %>
         <% end %>
+        </div>
 
 
     </div>
