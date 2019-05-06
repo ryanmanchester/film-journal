@@ -2,7 +2,7 @@ class Movie < ApplicationRecord
   belongs_to :director, optional: true
   has_many :user_movies
   has_many :users, through: :user_movies
-  #validates :title, :starring, :director_name, :synopsis, :release_year, :image, presence: true
+  validates :title, :starring, :director_name, :synopsis, :release_year, :image, presence: true
  accepts_nested_attributes_for :user_movies
 
  scope :directors, -> (id) {where(director_id: id)}
@@ -17,8 +17,13 @@ class Movie < ApplicationRecord
 
   def user_movies_attributes=(movie_attributes)
     movie_attributes.values.each do |movie_attribute|
-      user_movie = UserMovie.find_or_create_by(user_id: movie_attribute[:user_id], movie_id: self.id)
-      user_movie.update(movie_attribute)
+      if user_movie = UserMovie.find_by(movie_id: self.id)
+        user_movie.update(movie_attribute)
+      else
+        user_movie = UserMovie.create(movie_attribute)
+        self.user_movies << user_movie
+      end
     end
   end
+
 end
