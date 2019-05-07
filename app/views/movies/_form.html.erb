@@ -43,7 +43,7 @@
                     <%= user_movie.label :review, "Your Review" %><br>
                     <%= user_movie.text_area :review %><br>
                     <%= user_movie.label :rating, "Your Rating (1-5)" %>
-                    <%= user_movie.text_field :rating %><br>
+                    <%= user_movie.select :rating, ["1", "2", "3", "4", "5"]  %><br>
                   <% end %>
 
                   <%= f.submit %>
