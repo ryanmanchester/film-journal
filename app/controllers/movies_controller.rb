@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
 
   def index
     if params[:director_id]
-      @movies = @user.movies.directors(params[:director_id])
+      @movies = @user.movies.directors(params[:director_id]).order(:name)
     else
       @movies = @user.movies
     end
