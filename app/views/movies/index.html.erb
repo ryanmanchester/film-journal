@@ -7,7 +7,7 @@
   </h1>
   <p><strong>Search by Director:</strong></p>
   <%= form_tag user_movies_path, method: :get do %>
-    <%= select_tag "director_id", options_from_collection_for_select(@directors, :id, :name), include_blank: true %>
+    <%= select_tag "director_id", options_from_collection_for_select(@directors.order(:name), :id, :name), include_blank: true %>
     <%= submit_tag "Filter", class: "btn btn-primary" %>
     <%= link_to "Clear Filter", user_movies_path %>
   <% end %>

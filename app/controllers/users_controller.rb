@@ -11,7 +11,6 @@ class UsersController < ApplicationController
       redirect_to user_movies_path
     else
       render 'new'
-
     end
   end
 

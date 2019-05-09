@@ -3,9 +3,10 @@ class Movie < ApplicationRecord
   has_many :user_movies
   has_many :users, through: :user_movies
   validates :title, :starring, :director_name, :synopsis, :release_year, :image, presence: true
- accepts_nested_attributes_for :user_movies
 
- scope :directors, -> (id) {where(director_id: id)}
+  accepts_nested_attributes_for :user_movies
+
+  scope :directors, -> (id) {where(director_id: id)}
 
   def director_name=(name)
     self.director = Director.find_or_create_by(name: name)
