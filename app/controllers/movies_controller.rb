@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   before_action :require_login
   before_action :find_user
-  before_action :all_directors, only: [:new, :edit, :index]
+  before_action :all_directors, only: [:new, :create, :edit, :index]
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -10,18 +10,27 @@ class MoviesController < ApplicationController
   end
 
   def create
-    if movie = Movie.find_by(title: movie_params[:title])
-      movie.update(movie_params)
+    @movie = Movie.find_or_initialize_by(title: movie_params[:title])
+    if @movie.update(movie_params)
       redirect_to user_movies_path
     else
-      movie = Movie.create(movie_params)
-      redirect_to user_movies_path
-     end
+      if @movie.save
+        redirect_to user_movies_path
+      else
+        render :new
+      end
+    end
   end
 
   def index
-    if params[:director_id]
-      @movies = @user.movies.directors(params[:director_id]).order(:name)
+    #byebug
+    case params[:sorting_options]
+    when "Rating"
+      @movies = @user.movies.order_rating
+    when "Highest Rated Only"
+      @movies = @user.movies.highest_rated
+    when "Newest"
+      @movies = @user.movies.newest
     else
       @movies = @user.movies
     end
@@ -76,7 +85,7 @@ class MoviesController < ApplicationController
   end
 
   def all_directors
-    @directors = Director.all
+    @directors = Director.all.sort_by(&:name)
   end
 
 end
