@@ -5,12 +5,12 @@
   <h1 class="my-4">Welcome Back, <%= @user.username %><br>
     <small>Here's what you've been watching:</small>
   </h1>
-  <p><strong>Search by Director:</strong></p>
-  <%= form_tag user_movies_path, method: :get do %>
-    <%= select_tag "director_id", options_from_collection_for_select(@directors.order(:name), :id, :name), include_blank: true %>
-    <%= submit_tag "Filter", class: "btn btn-primary" %>
-    <%= link_to "Clear Filter", user_movies_path %>
+  <p><strong>Sort Your Movies:</strong></p>
+  <%= form_tag("/users/#{@user.id}/movies", method: "get") do %>
+  <%= select_tag "sorting_options", options_for_select(["Newest", "Rating", "Highest Rated Only"]), include_blank: true %>
+  <%= submit_tag "Filter" %>
   <% end %>
+
   <div class="row">
 
 <% @movies.each do |movie| %>
