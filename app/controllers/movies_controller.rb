@@ -13,12 +13,10 @@ class MoviesController < ApplicationController
     @movie = Movie.find_or_initialize_by(title: movie_params[:title])
     if @movie.update(movie_params)
       redirect_to user_movies_path
+    elsif @movie.save
+      redirect_to user_movies_path
     else
-      if @movie.save
-        redirect_to user_movies_path
-      else
-        render :new
-      end
+      render :new
     end
   end
 
@@ -27,12 +25,12 @@ class MoviesController < ApplicationController
     case params[:sorting_options]
     when "Rating"
       @movies = @user.movies.order_rating
-    when "Highest Rated Only"
+    when "5 Stars Only"
       @movies = @user.movies.highest_rated
-    when "Newest"
-      @movies = @user.movies.newest
+    when "Oldest"
+      @movies = @user.movies.oldest
     else
-      @movies = @user.movies
+      @movies = @user.movies.newest
     end
   end
 
