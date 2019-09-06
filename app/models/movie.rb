@@ -9,6 +9,7 @@ class Movie < ApplicationRecord
   scope :highest_rated, -> {includes(:user_movies).where("user_movies.rating = ?", 5)}
   scope :newest, -> {order("updated_at desc")}
   scope :oldest, -> {order("updated_at")}
+  
 
   def director_name=(name)
     self.director = Director.find_or_create_by(name: name)

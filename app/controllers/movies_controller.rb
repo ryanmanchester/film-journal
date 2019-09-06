@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   before_action :require_login
   before_action :find_user
-  before_action :all_directors, only: [:new, :create, :edit, :index]
+  before_action :all_directors, only: [:new, :create, :edit, :index, :popular_director]
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -21,7 +21,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    #byebug
     case params[:sorting_options]
     when "Rating"
       @movies = @user.movies.order_rating
@@ -32,6 +31,10 @@ class MoviesController < ApplicationController
     else
       @movies = @user.movies.newest
     end
+  end
+
+  def popular_director
+    @director = @directors.popular_director
   end
 
 
