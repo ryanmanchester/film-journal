@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   root 'sessions#new'
   get 'popular_director', to: 'movies#popular_director'
   get '/directors', to: 'directors#index'
+  get '/directors/:id', to: 'directors#show'
 end
