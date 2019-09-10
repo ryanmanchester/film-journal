@@ -6,4 +6,12 @@ class DirectorsController < ApplicationController
       f.json {render json: @directors}
     end
   end
+
+  def show
+    @director = Director.find(params[:id])
+    respond_to do |f|
+      f.html
+      f.json {render json: @director}
+    end
+  end
 end
