@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
   root 'sessions#new'
   get 'popular_director', to: 'movies#popular_director'
+  get '/directors', to: 'directors#index'
 end

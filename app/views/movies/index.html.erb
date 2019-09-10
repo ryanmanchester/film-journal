@@ -12,6 +12,7 @@
   <% end %></p>
 
   <div class="row">
+  
 
 <% @movies.each do |movie| %>
 
@@ -24,7 +25,7 @@
           <h4 class="card-title">
             <a href="<%= user_movie_path(@user, movie) %>"> <%= movie.title  %></a>
           </h4>
-          <p class="card-text"><strong>Directed by:</strong> <%= movie.director.name %></p>
+          <p class="card-text-director"><a class="directors" href="/directors">Directed by:</a> <%= movie.director.name %></p>
 
 
             <% movie.user_movies.each do |user_movie| %>

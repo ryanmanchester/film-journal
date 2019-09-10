@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $('p.card-text-director').on('click', (e) => {
+    $('a.directors').on('click', (e) => {
         alert('Clicked Button');
         e.preventDefault();
         history.pushState(null, null, '/directors')
@@ -18,7 +18,7 @@ $(document).ready(() => {
         let id = $(this).attr('data-id');
 
         $.getJSON(`/directors/${id}`, (data) => {
-          debugger;
+
         });
       });
     });
@@ -29,12 +29,7 @@ $(document).ready(() => {
     this.movies = director.movies;
   }
 
-  function getMovie(director) {
-    director.movies.forEach((movie) => {
-      let movieTitle = movie.title;
-    });
-    return movieTitle;
-  }
+
 
   Director.prototype.formatIndex = function () {
     let indexHtml = `
