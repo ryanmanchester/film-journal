@@ -53,9 +53,21 @@ $(document).ready(() => {
       $('#body-container').append(directorHtml);
       data.movies.forEach((movie) => {
         let movieHtml = `
-         <ul>
-           <li>${movie.title}</li>
-          </ul>
+          <div class="container">
+          <div class="row">
+  <div class="col-lg-4 col-sm-6 mb-4">
+    <div class="card h-100">
+      <img class="card-img-top" src="${movie.image}" alt="">
+      <div class="card-body">
+        <h4 class="card-title">
+          ${movie.title}
+        </h4>
+        <p class="card-text">${movie.synopsis}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
         `
         $('#body-container').append(movieHtml);
 
