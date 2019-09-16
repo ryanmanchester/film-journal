@@ -12,9 +12,9 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.find_or_initialize_by(title: movie_params[:title])
     if @movie.update(movie_params)
-      redirect_to user_movies_path
+      render json: @movie
     elsif @movie.save
-      redirect_to user_movies_path
+      render json: @movie
     else
       render :new
     end

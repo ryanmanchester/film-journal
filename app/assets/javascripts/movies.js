@@ -1,7 +1,17 @@
 $(document).ready( () => {
-  $('form#new_movie').on('submit', (e) => {
+  $('form#new_movie').on('submit',function (e){
     e.preventDefault();
-    debugger;
+    let postUrl = $(this).attr('action');
+    let values = $(this).serialize();
+    $.post(postUrl, values)
+    .done(function(data) {
+      console.log(data);
+      $('#body-container').html('')
+      const newMovie = new Movie(data);
+      const newMovieHtml = newMovie.formatNewMovie();
+      $('#body-container').html(newMovieHtml);
+
+    })
   })
 })
 
@@ -22,7 +32,11 @@ $(document).ready( () => {
         <h3 class="my-3">Release Year:</h3>
         <p>${this.release_year}</p>
         <h3 class="my-3">Director:</h3>
-        <p>${this.director}</p>
+        <p>${this.director.name}</p>
+        <h3 class="my-3">Your Review:</h3>
+        <p>${this.user_movies[0].review}</p>
+        <h3 class="my-3">Your Rating:</h3>
+        <p>${this.user_movies[0].rating}</p><br></br>
 
       </div>
 
@@ -40,4 +54,5 @@ function Movie(movie) {
   this.synopsis = movie.synopsis;
   this.image = movie.image;
   this.director = movie.director;
+  this.user_movies = movie.user_movies;
 }
