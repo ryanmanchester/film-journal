@@ -21,15 +21,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    case params[:sorting_options]
-    when "Rating"
-      @movies = @user.movies.order_rating
-    when "5 Stars Only"
-      @movies = @user.movies.highest_rated
-    when "Oldest"
-      @movies = @user.movies.oldest
-    else
-      @movies = @user.movies.newest
+    movie_filter_options
+    respond_to do |f|
+      f.html
+      f.json {render json: @movies}
     end
   end
 
@@ -87,6 +82,20 @@ class MoviesController < ApplicationController
 
   def all_directors
     @directors = Director.all.sort_by(&:name)
+  end
+
+  def movie_filter_options
+    case params[:sorting_options]
+    when "Rating"
+      @movies = @user.movies.order_rating
+    when "5 Stars Only"
+      @movies = @user.movies.highest_rated
+    when "Oldest"
+      @movies = @user.movies.oldest
+    else
+      @movies = @user.movies.newest
+
+    end
   end
 
 end
