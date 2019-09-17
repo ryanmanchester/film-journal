@@ -1,6 +1,6 @@
 $(document).ready(() => {
-  getDirectors();
   showDirector();
+  getDirectors();
 });
 
   function Director(director){
@@ -11,7 +11,7 @@ $(document).ready(() => {
 
   Director.prototype.formatIndex = function () {
     let indexHtml = `
-     <a href="/directors/${this.id}" data-id="${this.id}" class="show-director"><h1>${this.name}</h1></a>
+     <h1>${this.name}</h1>
     `
     return indexHtml;
   };
@@ -19,13 +19,14 @@ $(document).ready(() => {
   Director.prototype.formatShow = function() {
     let showHtml = `
     <h3>Movies by ${this.name}:</h3>
+    <a href="/directors/${this.id}" data-id="${this.id}" class="all-directors"><p>See All Directors of Your Movies</p></a>
 
     `
     return showHtml;
-  }
+  };
 
   function getDirectors(){
-    $('a.directors').on('click', (e) => {
+       $(document).on('click', '.all-directors', function(e) {
         alert('Clicked Button');
         e.preventDefault();
         history.pushState(null, null, '/directors')
@@ -37,11 +38,11 @@ $(document).ready(() => {
             $('#body-container').append(directorHtml);
           });
         });
-      });
-    }
+    });
+  };
 
   function showDirector() {
-    $(document).on('click', '.show-director', function(e) {
+     $('a.directors').on('click', function(e) {
       e.preventDefault();
       alert('Show Director');
     let id = $(this).attr('data-id');
