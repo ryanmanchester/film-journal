@@ -5,7 +5,6 @@ $(document).ready( () => {
     let values = $(this).serialize();
     $.post(postUrl, values)
     .done(function(data) {
-      console.log(data);
       $('#body-container').html('')
       const newMovie = new Movie(data);
       const newMovieHtml = newMovie.formatNewMovie();

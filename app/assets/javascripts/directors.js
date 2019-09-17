@@ -27,7 +27,6 @@ $(document).ready(() => {
 
   function getDirectors(){
        $(document).on('click', '.all-directors', function(e) {
-        alert('Clicked Button');
         e.preventDefault();
         history.pushState(null, null, '/directors')
         $.getJSON('/directors', (data) => {
@@ -38,13 +37,12 @@ $(document).ready(() => {
             $('#body-container').append(directorHtml);
           });
         });
-    });
-  };
+      });
+    }
 
   function showDirector() {
      $('a.directors').on('click', function(e) {
       e.preventDefault();
-      alert('Show Director');
     let id = $(this).attr('data-id');
     $.getJSON(`/directors/${id}`, (data) => {
       clearDom();
@@ -53,7 +51,6 @@ $(document).ready(() => {
       let directorHtml = newDirector.formatShow();
       $('#body-container').append(directorHtml);
       showDirectorMovies(newDirector);
-
     });
   });
 }
@@ -67,7 +64,6 @@ function showDirectorMovies(director){
   director.movies.forEach((movie) => {
     let movieFormat = $('#body-container').append(movieHtml(movie));
     return movieFormat;
-
   });
 }
 
