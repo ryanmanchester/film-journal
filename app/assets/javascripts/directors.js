@@ -30,7 +30,7 @@ $(document).ready(() => {
         e.preventDefault();
         history.pushState(null, null, '/directors')
         $.getJSON('/directors', (data) => {
-          $('#body-container').html('');
+          clearDom();
           data.forEach((director) => {
             let newDirector = new Director(director);
             let directorHtml = newDirector.formatIndex();
@@ -46,33 +46,47 @@ $(document).ready(() => {
       alert('Show Director');
     let id = $(this).attr('data-id');
     $.getJSON(`/directors/${id}`, (data) => {
-      $('#body-container').html('');
+      clearDom();
       history.pushState(null, null, `directors/${id}`)
       let newDirector = new Director(data);
       let directorHtml = newDirector.formatShow();
       $('#body-container').append(directorHtml);
-      data.movies.forEach((movie) => {
-        let movieHtml = `
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                 <img class="card-img-top" src="${movie.image}" alt="">
-                  <div class="card-body">
-                   <h4 class="card-title">
-                     ${movie.title}
-                     </h4>
-                   <p class="card-text">${movie.synopsis}</p>
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
-        `
-        $('#body-container').append(movieHtml);
-
-      });
+      showDirectorMovies(newDirector);
 
     });
   });
+}
+
+function clearDom() {
+  let domClear = $('#body-container').html('');
+  return domClear;
+}
+
+function showDirectorMovies(director){
+  director.movies.forEach((movie) => {
+    let movieFormat = $('#body-container').append(movieHtml(movie));
+    return movieFormat;
+
+  });
+}
+
+function movieHtml(movie){
+  let movieHtml = `
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mb-4">
+          <div class="card h-100">
+           <img class="card-img-top" src="${movie.image}" alt="">
+            <div class="card-body">
+             <h4 class="card-title">
+               ${movie.title}
+               </h4>
+             <p class="card-text">${movie.synopsis}</p>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+  `
+  return movieHtml;
 }
