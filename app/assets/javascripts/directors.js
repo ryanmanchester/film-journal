@@ -1,6 +1,7 @@
 $(document).ready(() => {
   showDirector();
   getDirectors();
+  sortDirectors();
 });
 
   function Director(director){
@@ -65,6 +66,32 @@ function showDirectorMovies(director){
     let movieFormat = $('#body-container').append(movieHtml(movie));
     return movieFormat;
   });
+}
+
+function sortDirectors() {
+  $('.sort-directors').on('click', function() {
+    fetch('/directors.json')
+     .then(resp => resp.json())
+     .then(directors => {
+       directors.sort(function(a, b) {
+         let nameA = a.name.toUpperCase();
+         let nameB = b.name.toUpperCase();
+       if (nameA < nameB) {
+         return -1;
+       }
+       if (nameA > nameB) {
+         return 1;
+       }
+       return 0;
+     });
+   clearDom();
+   directors.forEach((director) => {
+     let newDirector = new Director(director);
+     let directorHtml = newDirector.formatIndex();
+     $('#body-container').append(directorHtml);
+   })
+ })
+})
 }
 
 function movieHtml(movie){
