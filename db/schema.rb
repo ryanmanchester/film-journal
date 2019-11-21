@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_04_14_224703) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "directors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
