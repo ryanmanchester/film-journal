@@ -3,6 +3,9 @@
   <!-- Page Heading -->
   <div class="flash"><h5><%= flash[:message] %></h5></div>
   <h1 class="my-4">Welcome Back, <%= @user.username %><br>
+    <% if @movies.count == 0 %>
+    <small>Looks like you haven't added any movies yet!</small>
+    <% else %>
     <small>Here's what you've been watching:</small>
   </h1><br>
   <p><strong>Sort Your Movies:</strong>
@@ -10,6 +13,8 @@
   <%= select_tag "sorting_options", options_for_select(["Rating","5 Stars Only" , "Oldest"]), include_blank: true %>
   <%= submit_tag "Filter" %> <%= link_to "Clear Filter", user_movies_path %>
   <% end %></p>
+
+  <% end %>
 
   <div class="row">
 
