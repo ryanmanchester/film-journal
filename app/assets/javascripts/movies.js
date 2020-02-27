@@ -5,11 +5,16 @@ $(document).ready( () => {
     let values = $(this).serialize();
     $.post(postUrl, values)
     .done(function(data) {
-      $('#body-container').html('')
-      const newMovie = new Movie(data);
-      const newMovieHtml = newMovie.formatNewMovie();
-      $('#body-container').html(newMovieHtml);
 
+
+      if(data.length <= 6) {
+        $('form#new_movie').append(errorHtml(data))
+      }else {
+        $('#body-container').html('')
+        const newMovie = new Movie(data);
+        const newMovieHtml = newMovie.formatNewMovie();
+        $('#body-container').html(newMovieHtml);
+      }
     })
   })
 })
@@ -54,4 +59,13 @@ function Movie(movie) {
   this.image = movie.image;
   this.director = movie.director;
   this.user_movies = movie.user_movies;
+}
+
+function errorHtml(data) {
+  errorsHtml = `
+    <div class="error-messages">
+      ${data.join(', ')}
+    </div>
+  `
+  return errorsHtml;
 }

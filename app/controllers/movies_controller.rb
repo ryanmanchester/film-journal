@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     elsif @movie.save
       render json: @movie
     else
-      render :new
+      render json: @movie.errors.full_messages
     end
   end
 
