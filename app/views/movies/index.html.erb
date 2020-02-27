@@ -11,7 +11,7 @@
   <p><strong>Sort Your Movies:</strong>
   <%= form_tag(user_movies_path, method: "get") do %>
   <%= select_tag "sorting_options", options_for_select(["Rating","5 Stars Only" , "Oldest"]), include_blank: true %>
-  <%= submit_tag "Filter" %> <%= link_to "Clear Filter", user_movies_path %>
+  <%= submit_tag "Filter" %> <%= link_to "Clear Filter", user_movies_path, class: "btn btn-sm btn-secondary" %>
   <% end %></p>
 
   <% end %>
@@ -47,12 +47,13 @@
 <% end %>
     </div>
 
-    <%= link_to "Add a Movie", new_user_movie_path %><br>
+    <%= link_to "Add a Movie", new_user_movie_path, class: "btn btn-md btn-success" %><br>
       <div class='signout'>
          <%= form_tag('/signout', method: :delete) do %>
           <%= submit_tag 'Signout', class: "btn btn-primary" %>
         <% end %>
         </div>
+
 
 
     </div>
